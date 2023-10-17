@@ -14,24 +14,24 @@ class Participant:
         self.points = 0
         self.choice = ""
     def choose(self):
-        choices = ("rock","paper","scissor","snake","Ibrahim")
+        choices = ("rock","paper","scissor","snake","ibrahim")
         
         while True:
-            self.name = input("Enter Your name please")
+            self.name = input("Enter Your name please \n")
             if len(self.name) > 0 :
                 break
             else:
-                print("Please enter a name ")
+                print("Please enter a name \n")
             
         
         while True:
-            self.choice = input("{name}, select rock, paper, scissor, snake or: ".format(name= self.name))
+            self.choice = input("{name}, select rock, paper, scissor, snake or Ibrahim: \n".format(name= self.name))
             if self.choice.lower() in choices:
                 self.choice = self.choice.lower()
-                print("{name} selects {choice}".format(name=self.name, choice = self.choice))
+                print("{name} selects {choice} \n".format(name=self.name, choice = self.choice))
                 break
             else:
-                print("The weapon choice entered is not recognised")
+                print("The weapon choice entered is not recognised \n")
     
     def incrementPoint(self):
         self.points+=1
@@ -42,7 +42,7 @@ class Participant:
             "paper": 1,
             "scissor": 2,
             "snake": 3,
-            "Ibrahim": 4,
+            "ibrahim": 4,
         }
         return switcher[self.choice]
 
@@ -69,12 +69,12 @@ class GameRound:
     def awardPoints(self, result, p1, p2):
         if result > 0:
            p1.incrementPoint()
-           print('Round resulted in a win for {player1}'.format(player1 = p1.name))
+           print('Round resulted in a win for {player1}\n'.format(player1 = p1.name))
         elif result < 0:
            p2.incrementPoint()
-           print('Round resulted in a win for {player2}'.format(player2 = p2.name))
+           print('Round resulted in a win for {player2}\n'.format(player2 = p2.name))
         else:
-            print('Round resulted in a draw')
+            print('Round resulted in a draw\n')
         
     def getResultAsString(self, result):
         res = {
@@ -96,12 +96,12 @@ class Game:
             self.checkEndCondition()
 
     def checkEndCondition(self):
-        answer = input("Continue game y/n: ")
+        answer = input("Continue game y/n: \n")
         if answer == 'y':
             GameRound(self.participant, self.secondParticipant)
             self.checkEndCondition()
         else:
-            print("Game ended, {p1name} has {p1points}, and {p2name} has {p2points}".format(p1name = self.participant.name, p1points= self.participant.points, p2name=self.secondParticipant.name, p2points=self.secondParticipant.points))
+            print("Game ended, {p1name} has {p1points}, and {p2name} has {p2points}\n".format(p1name = self.participant.name, p1points= self.participant.points, p2name=self.secondParticipant.name, p2points=self.secondParticipant.points))
             self.determineWinner()
             self.endGame = True
     def determineWinner(self):
@@ -110,7 +110,7 @@ class Game:
             resultString = "Winner is {name}".format(name=self.participant.name)
         elif self.participant.points < self.secondParticipant.points:
             resultString = "Winner is {name}".format(name=self.secondParticipant.name)
-        print(resultString)
+        print(resultString+'\n')
 
 game = Game()
 game.start()
